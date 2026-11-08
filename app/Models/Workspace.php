@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class Workspace extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['name', 'agency_name', 'owner_id'];
+
+    public function owner(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'owner_id');
+    }
+
+    public function members(): HasMany
+    {
+        return $this->hasMany(WorkspaceMember::class);
+    }
+
+    public function projects(): HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    public function isMember(User $user): bool
+    {
+        return $this->members()->where('user_id', $user->id)->exists();
+    }
+
+    public function memberOf(User $user): ?WorkspaceMember
+    {
+        return $this->members()->where('user_id', $user->id)->first();
+    }
+}
