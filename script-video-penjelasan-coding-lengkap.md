@@ -1,97 +1,303 @@
-# 🎬 SCRIPT VIDEO PRESENTASI WEB & PENJELASAN CODING LENGKAP
+# 🎬 SCRIPT VIDEO PRESENTASI: DEMO FITUR TIAP ROLE + BEDAH CODING (KHUSUS RAFFI)
 **Mata Kuliah:** Pemrograman Web III  
 **Judul Proyek:** Project Management SaaS Platform (Digital Agency Studio)  
-**Total Durasi Target:** ± 10 – 14 Menit  
-**Pembagian Peran:** 4 Orang (Raffi Casidy, Rasya Chaniago, Melda Munisa, Popita Sari)  
-
-> **💡 Catatan Khusus:** Sesuai kriteria penilaian, script ini menyertakan **bedah kode sumber (source code walkthrough)** secara mendalam di setiap peran, dengan porsi coding arsitektural dan pengujian terberat dibawakan oleh **Raffi (Project Manager & Backend Lead)**.
+**Total Durasi:** ± 10 – 12 Menit  
 
 ---
 
-## ⏱️ RANGKUMAN RUNDOWN & PEMBAGIAN TUGAS
+## 👥 STRUKTUR PEMBAGIAN TUGAS
+
+| No | Nama | Peran | Tugas di Video | Apa yang Ditampilkan di Layar |
+|---|---|---|---|---|
+| **1** | **Raffi Casidy** (25781097) | **Owner & Project Manager** | **Pembukaan & Demo Owner** | Browser: Login Glassmorphism, Dashboard Owner, Review Queue, Kanban Board, & Form Tugas Dinamis. |
+| **2** | **Melda Munisa** (25781091) | **Content Creator (Member)** | **Demo Fitur Konten** | Browser: Dashboard Member, Dual-Panel Brief/Output, Slider Progres, Auto Status (`todo` ➔ `in_progress`), Submit Review. |
+| **3** | **Popita Sari** (25781096) | **Social Media Specialist (Member)** | **Demo Fitur Sosmed & Approval** | Browser: Keamanan antar-member (read-only tugas orang lain), tugas jadwal & analytics, alur disetujui Owner (`Done`). |
+| **4** | **Rasya Chaniago** (25781093) | **Graphic Designer (Member)** | **Demo Fitur Desain & Alur Revisi** | Browser: Brief aset visual, menerima catatan revisi Owner di panel Riwayat Revisi, perbaikan & resubmit. |
+| **5** | **Raffi Casidy** (25781097) | **Lead Programmer / Developer** | **BEDAH CODING LENGKAP & TESTING** | **VS Code & Terminal:** Bedah Database & Model, Routing & Middleware Guard, Dynamic Schema, Validation Controller, & Run `php artisan test` (29 passed). |
+
+---
+
+## ⏱️ RUNDOWN WAKTU
 
 ```text
-[00:00 - 03:00] RAFFI CASIDY       : Intro, Arsitektur Routing, Middleware Otorisasi, & Quick-Login
-[03:00 - 05:45] RASYA CHANIAGO     : Database Migrations (5 Tabel), Model Eloquent, & UI Glassmorphism
-[05:45 - 08:30] MELDA MUNISA       : WorkspaceController, ProjectController, Guard Otorisasi, & View Blade
-[08:30 - 11:15] POPITA SARI        : Dynamic Task JSON Schema (Match Expr), TaskController, & Dashboard Eager Loading
-[11:15 - 14:00] RAFFI CASIDY       : TaskValidationController, Testing PHPUnit (29 Tests Passing), & Closing
+[00:00 - 02:00] RAFFI CASIDY       : Intro, Konsep Sistem, Login UI, & Dashboard Owner
+[02:00 - 04:00] MELDA MUNISA       : Demo Fitur Content Creator (Brief, Output, Slider, Auto Status)
+[04:00 - 06:00] POPITA SARI        : Demo Fitur Sosmed Specialist, Guard Antar-Anggota, & Alur Approved (Done)
+[06:00 - 08:00] RASYA CHANIAGO     : Demo Fitur Graphic Designer, Menerima Catatan Revisi, & Resubmit
+[08:00 - 11:30] RAFFI CASIDY       : BEDAH CODING LENGKAP DI VS CODE & RUNNING TEST (POIN PLUS!)
+[11:30 - 12:00] RAFFI CASIDY       : Kesimpulan & Penutup
 ```
 
 ---
 
 ---
 
-# 👔 BAGIAN 1: RAFFI CASIDY (25781097)
-### Role: Project Manager, Workspace Owner & Backend Architect
-**Fokus Penjelasan:** Latar Belakang Masalah, Arsitektur Web, Routing (`routes/web.php`), Middleware Otorisasi (`CheckWorkspaceMember`), dan Mekanisme Route Quick-Login.  
-**Durasi:** ± 3 Menit  
+# 👔 BAGIAN 1: RAFFI CASIDY — PEMBUKAAN & DEMO OWNER
+**Fokus:** Konsep Sistem Agensi, UI Login Modern, Dashboard Owner, Fitur Review Queue, dan Pembuatan Tugas Dinamis.  
+**Tampilan Layar:** Browser (`http://127.0.0.1:8000/login`) ➔ Dashboard Owner  
+**Durasi:** ± 2 Menit  
 
 ---
 
-### [Langkah 1.1] Pembukaan & Gambaran Arsitektur Sistem
+### [Aksi 1.1] Intro & Tampilan Login
 **[Visual Layar]**  
-*Mulai dari tampilan awal web di browser (`http://127.0.0.1:8000/login`) dengan desain glassmorphism, lalu beralih ke editor VS Code membuka diagram/arsitektur di `perencanaan-project-management-saas.md`.*
+*Tampilkan halaman login browser `http://127.0.0.1:8000/login`. Tunjukkan desain glassmorphism modern, sidebar login gelap, dan kotak Quick Login di bawah.*
 
-**[Dialog Narasi Raffi]:**  
-> *"Halo semuanya! Selamat datang di video presentasi dan bedah kodingan dari kelompok kami untuk mata kuliah Pemrograman Web III.*  
+**[Narasi Raffi]:**  
+> *"Halo semuanya! Selamat datang di video presentasi kelompok kami untuk mata kuliah Pemrograman Web III.*  
 > 
-> *Nama saya **Raffi Casidy** (NPM: 25781097), bertindak sebagai Project Manager sekaligus Owner pada sistem ini. Anggota kelompok kami terdiri dari:*  
-> 1. *Saya sendiri, Raffi Casidy,*  
-> 2. *Rasya Chaniago sebagai Graphic Designer,*  
-> 3. *Melda Munisa sebagai Content Creator, dan*  
-> 4. *Popita Sari sebagai Social Media Specialist.*  
+> *Nama saya **Raffi Casidy** (NPM: 25781097), bertindak sebagai Project Manager dan Owner workspace. Di kelompok ini, saya bekerja bersama 3 rekan saya:*  
+> 1. *Melda Munisa sebagai Content Creator,*  
+> 2. *Popita Sari sebagai Social Media Specialist, dan*  
+> 3. *Rasya Chaniago sebagai Graphic Designer.*  
 > 
-> *Aplikasi yang kami bangun adalah **Project Management SaaS Platform** untuk tim agensi digital kecil. Masalah yang kami selesaikan adalah ketidakteraturan delegasi tugas dan validasi mutu kampanye klien jika hanya mengandalkan grup chat. Lewat aplikasi ini, agensi memiliki ruang kerja terisolasi *(multi-tenancy)*, papan Kanban visual, form tugas adaptif, dan siklus verifikasi pekerjaan resmi.*  
+> *Aplikasi yang kami bangun adalah **Project Management SaaS Platform**, platform kolaborasi agensi digital untuk mengelola kampanye klien. Sistem ini memecahkan masalah koordinasi tugas yang berantakan di grup chat lewat alur kerja terstruktur dan verifikasi mutu resmi.*  
 > 
-> *Sekarang, saya akan langsung membedah fondasi arsitektur routing dan sistem pengamanan akses di sisi backend."*
+> *Antarmuka aplikasi dirancang dengan tema **Modern Glassmorphism** berpalet dark teal. Untuk kemudahan pengujian, kami menyediakan fitur **Quick Login Demo** dengan 4 akun studi kasus tim kami. Mari kita masuk menggunakan akun saya sebagai Owner."*
 
 ---
 
-### [Langkah 1.2] Bedah Kodingan: Routing & Nested Routes (`routes/web.php`)
+### [Aksi 1.2] Dashboard Owner & Fitur Eksklusif Review Queue
 **[Visual Layar]**  
-*Buka file `routes/web.php` di VS Code. Sorot baris 11–23 (Quick Login) dan baris 34–60 (Grup Route Middleware).*
+*Klik tombol quick login **Raffi**. Masuk ke `/dashboard`. Arahkan kursor ke kartu proyek Kopi Nusantara, kartu 'Validasi Tugas Anggota' (Review Queue), dan Kanban board proyek.*
 
-**[Dialog Narasi Raffi]:**  
-> *"Mari kita buka file **`routes/web.php`**.*  
+**[Narasi Raffi]:**  
+> *"Di dashboard Raffi sebagai Owner, ada komponen istimewa yang menjadi keunggulan sistem kami: widget **'Validasi Tugas Anggota / Review Queue'**.*  
 > 
-> *Pertama, perhatikan di baris 15 sampai 23:*  
+> *Panel ini **hanya muncul pada akun Owner** ketika ada tugas anggota yang sudah diajukan untuk direview. Project Manager tidak perlu mencari tugas satu per satu; dari sini Owner bisa langsung memvalidasi hasil kerja tim.*  
+> 
+> *Selain itu, saat Owner membuat tugas baru di proyek (`/projects/1/tasks/create`), sistem kami menerapkan **Form Adaptif**: ketika memilih Melda, form meminta topik dan tone of voice; ketika memilih Rasya, form berganti meminta dimensi dan brand guideline; dan ketika memilih Popita, form meminta platform serta jadwal posting.*  
+> 
+> *Sekarang, rekan-rekan saya akan mendemonstrasikan bagaimana setiap anggota tim mengerjakan tugas sesuai rolenya masing-masing. Dimulai dari **Melda Munisa** sebagai Content Creator."*
+
+---
+
+---
+
+# ✍️ BAGIAN 2: MELDA MUNISA — FITUR CONTENT CREATOR
+**Fokus:** Tampilan Khusus Member, Layout Dual-Panel (Brief vs Output), Slider Progres, Otomatisasi Status, dan Pengajuan Review.  
+**Tampilan Layar:** Browser (Login Melda ➔ Detail Tugas Melda `/tasks/1`)  
+**Durasi:** ± 2 Menit  
+
+---
+
+### [Aksi 2.1] Login Melda & Antarmuka Terfokus
+**[Visual Layar]**  
+*Gunakan dropdown 'Ganti Role Demo' di navbar kanan atas, klik **Melda Munisa**. Masuk ke dashboard Melda. Tunjukkan badge peran **Content Creator / Member** dan daftar tugas milik Melda.*
+
+**[Narasi Melda]:**  
+> *"Halo, saya **Melda Munisa** (NPM: 25781091) sebagai Content Creator.*  
+> 
+> *Ketika saya masuk menggunakan akun saya, antarmuka dashboard langsung menyesuaikan:*  
+> *Menu dan widget administratif milik Owner disembunyikan. Dashboard saya terfokus menampilkan tugas-tugas yang memang ditugaskan kepada saya, diurutkan dari deadline terdekat.*  
+> 
+> *Di sini terlihat saya memiliki tugas berjudul **'Buat 10 ide konten & caption feed Instagram'** dengan status awal masih **To Do**."*
+
+---
+
+### [Aksi 2.2] Mengerjakan Tugas: Dual-Panel & Otomatisasi Status
+**[Visual Layar]**  
+*Klik tugas Melda (`/tasks/1`).*  
+*- Tunjukkan panel kiri (Brief dari Owner Raffi).*  
+*- Di panel kanan (Output), ketik teks caption contoh, masukkan link Google Docs.*  
+*- Geser slider progres dari 0% ke **60%**, lalu klik **Simpan Hasil & Progres**.*  
+*- Tunjukkan badge status di atas yang otomatis berubah menjadi **In Progress** (biru).*
+
+**[Narasi Melda]:**  
+> *"Saat membuka tugas, saya disajikan tata letak **Dual-Panel** yang sangat memudahkan pekerjaan kreatif:*  
+> - *Di sebelah kiri, ada **Brief Lengkap dari Owner**, mulai dari topik kopi kemasan baru, gaya bahasa atau tone of voice santai anak muda, hingga link referensi.*  
+> - *Di sebelah kanan, ada **Form Hasil Kerja** khusus Content Creator untuk mengisi draf caption dan link naskah.*  
+> 
+> *Sekarang saya masukkan draf caption-nya dan saya geser **Slider Progres** ini ke **60%**, lalu saya klik Simpan.*  
+> 
+> *Perhatikan: status tugas secara otomatis berubah dari **To Do menjadi In Progress** begitu ada progres kerja! Tidak perlu klik tombol ganti status manual yang membingungkan."*
+
+---
+
+### [Aksi 2.3] Mengajukan Tugas ke Review Owner
+**[Visual Layar]**  
+*Geser slider ke **100%**, klik tombol **'Ajukan Tugas ke Review Owner ↑'**. Klik OK pada konfirmasi dialog. Tunjukkan status berubah jadi **Review** (kuning).*
+
+**[Narasi Melda]:**  
+> *"Setelah seluruh naskah selesai, saya naikkan progres menjadi **100%**, lalu mengklik tombol **'Ajukan Tugas ke Review Owner'**.*  
+> 
+> *Status tugas sekarang berpindah ke fase **Review**, dan form pengerjaan dikunci sementara selagi menunggu evaluasi dari Project Manager.*  
+> 
+> *Selanjutnya, rekan saya **Popita Sari** akan mendemonstrasikan tugas di bidang Social Media Specialist."*
+
+---
+
+---
+
+# 📊 BAGIAN 3: POPITA SARI — FITUR SOSMED & ALUR APPROVED (DONE)
+**Fokus:** Keamanan Akses Antar-Anggota (Tugas Orang Lain Terkunci), Tugas Spesialisasi Sosmed, dan Simulasi Approval ke Status Selesai (Done).  
+**Tampilan Layar:** Browser (Login Popita ➔ Tugas Popita `/tasks/3` ➔ Disetujui Owner)  
+**Durasi:** ± 2 Menit  
+
+---
+
+### [Aksi 3.1] Keamanan Akses Antar-Anggota & Tugas Sosmed
+**[Visual Layar]**  
+*Beralih role ke **Popita Sari** via dropdown navbar.*  
+*- Buka proyek `/projects/1`, coba klik tugas milik Rasya (`/tasks/2`). Tunjukkan form input tidak ada / read-only.*  
+*- Buka tugas milik Popita sendiri: **'Susun jadwal posting 2 minggu'** (`/tasks/3`).*
+
+**[Narasi Popita]:**  
+> *"Halo semuanya! Saya **Popita Sari** (NPM: 25781096) sebagai Social Media Specialist.*  
+> 
+> *Pertama, saya ingin memperlihatkan fitur proteksi privasi tugas: ketika saya membuka tugas milik Rasya atau Melda, halaman bersifat **Read-Only**.*  
+> *Sistem tidak merender form input maupun tombol pengajuan. Artinya, **setiap anggota tim hanya berhak mengerjakan tugas miliknya sendiri**.*  
+> 
+> *Sekarang kita buka tugas milik saya: **'Susun jadwal posting 2 minggu'**.*  
+> *Sesuai profesi saya, form output yang disediakan adalah tautan spreadsheet jadwal posting dan catatan strategi tayang.*  
+> *Tugas saya ini sudah selesai dikerjakan, berprogres 100%, dan posisinya sedang menunggu persetujuan di status **Review**."*
+
+---
+
+### [Aksi 3.2] Persetujuan Tugas (Approval ke Status Done)
+**[Visual Layar]**  
+*Ganti role kembali ke **Raffi (Owner)** via dropdown. Masuk ke `/tasks/3`. Klik tombol hijau **'Setujui Tugas (Approve & Done)'**. Klik OK. Tunjukkan status berubah menjadi **Done** (hijau) dan kartu Popita di `/projects/1` pindah ke kolom **Done**.*
+
+**[Narasi Popita]:**  
+> *"Di sisi Project Manager, Raffi memeriksa hasil jadwal posting yang saya lampirkan. Karena jadwal sudah rapi dan sesuai target kampanye klien, Raffi mengklik tombol hijau **'Setujui Tugas (Approve & Done)'**.*  
+> 
+> *Seketika status tugas berubah menjadi **Done**, dan di papan Kanban kartu tugas saya resmi masuk ke kolom hijau selesai. Progres keseluruhan proyek pun otomatis meningkat!*  
+> 
+> *Lalu, bagaimana jika hasil kerja belum sesuai dan butuh perbaikan? Rekan saya, **Rasya Chaniago**, akan memperlihatkan alur revisinya."*
+
+---
+
+---
+
+# 🎨 BAGIAN 4: RASYA CHANIAGO — FITUR DESAIN & ALUR REVISI
+**Fokus:** Tugas Graphic Designer (Brand Guideline & Dimensi), Menerima Catatan Revisi Transparan dari Owner, Perbaikan & Resubmit.  
+**Tampilan Layar:** Browser (Login Rasya ➔ Tugas Rasya `/tasks/2` ➔ Menerima Revisi)  
+**Durasi:** ± 2 Menit  
+
+---
+
+### [Aksi 4.1] Tugas Desain Visual & Pengajuan Awal
+**[Visual Layar]**  
+*Beralih role ke **Rasya Chaniago** via dropdown navbar. Buka tugas Rasya: **'Desain 10 visual feed Instagram'** (`/tasks/2`).*
+
+**[Narasi Rasya]:**  
+> *"Halo semuanya! Saya **Rasya Chaniago** (NPM: 25781093) selaku Graphic Designer di tim ini.*  
+> 
+> *Pada tugas saya, brief yang diberikan Project Manager berisi link Brand Guideline, palet warna kopi, dan dimensi feed Instagram 1080x1080.*  
+> 
+> *Saya memasukkan tautan file desain Figma hasil kerja saya, lalu menaikkan progres ke 100% dan mengajukan tugas ke status **Review**."*
+
+---
+
+### [Aksi 4.2] Menerima Catatan Revisi Transparan & Resubmit
+**[Visual Layar]**  
+*- Switch ke akun **Raffi (Owner)**, buka `/tasks/2`.*  
+*- Klik tombol merah **'Minta Revisi...'**, ketik catatan: 'Warna feed ke-3 dan ke-7 terlalu gelap. Harap sesuaikan dengan palet krem hangat kopi kemasan terbaru.', klik **Kirim Instruksi Revisi**.*  
+*- Switch kembali ke **Rasya Chaniago** (`/tasks/2`). Tunjukkan badge status menjadi merah **Revisi**, dan sorot panel **'Riwayat Catatan Revisi'** di bagian bawah.*
+
+**[Narasi Rasya]:**  
+> *"Nah, sekarang mari kita lihat alur ketika tugas memerlukan perbaikan.*  
+> 
+> *Ketika Raffi memeriksa desain saya dan mendapati warnanya kurang sesuai, Raffi mengklik tombol **'Minta Revisi'** dan menuliskan catatan perbaikan.*  
+> 
+> *Begitu saya membuka kembali halaman tugas saya sebagai Rasya, status tugas langsung ditandai dengan badge merah **Revisi**.*  
+> 
+> *Fitur unggulan di sini adalah transparansinya: di bagian bawah, muncul panel **Riwayat Catatan Revisi** lengkap dengan nama pengirim dan waktunya.*  
+> *Catatan Raffi terbaca jelas: 'Warna feed ke-3 dan ke-7 terlalu gelap, sesuaikan dengan palet krem hangat'.*  
+> 
+> *Dengan catatan tertulis ini, desainer tidak akan salah arah. Tombol ajukan review otomatis terbuka kembali, sehingga setelah saya memperbarui desain di Figma, saya bisa mengajukan ulang hingga disetujui.*  
+> 
+> *Sekarang, Project Manager sekaligus pengembang backend kami, **Raffi Casidy**, akan membongkar seluruh source code dan logika kodingan di balik aplikasi ini!"*
+
+---
+
+---
+
+# 💻 BAGIAN 5: RAFFI CASIDY — BEDAH CODING LENGKAP & TESTING (POIN PLUS!)
+**Fokus:** Bedah Source Code Mendalam di VS Code (Database, Model, Dynamic Match Schema, Routing & Middleware 403, Controller Logic, dan Eksekusi Automated Test PHPUnit).  
+**Tampilan Layar:** VS Code (Code Editor) & Terminal PowerShell  
+**Durasi:** ± 3,5 Menit  
+
+---
+
+### [Koding 5.1] Bedah Skema Database & Relasi Model
+**[Visual Layar]**  
+*Buka VS Code. Buka file `database/migrations/2024_01_01_000004_create_tasks_table.php` dan `app/Models/Task.php`.*
+
+**[Narasi Raffi]:**  
+> *"Terima kasih rekan-rekan. Sekarang, kita masuk ke bagian terpenting: **Bedah Kodingan Sumber (Source Code Walkthrough)**.*  
+> 
+> *Pertama, mari kita lihat skema database di **`database/migrations/create_tasks_table.php`**.*  
+> *Kunci dari fleksibilitas sistem kami ada di baris 26 dan 27:*  
 > ```php
-> Route::get('/quick-login/{email}', function (string $email) {
->     $user = \App\Models\User::where('email', $email)->first();
->     if ($user) {
->         \Illuminate\Support\Facades\Auth::login($user);
->         return redirect()->route('dashboard')->with('success', "Berhasil masuk sebagai {$user->name}");
->     }
->     return redirect()->route('login')->with('error', 'User tidak ditemukan.');
-> })->name('quick-login');
+> $table->json('input_data')->nullable();
+> $table->json('output_data')->nullable();
 > ```  
-> *Route ini kami buat khusus untuk kebutuhan pengujian demo dosen dan tim, di mana sistem langsung mengautentikasi user via `Auth::login($user)` tanpa perlu mengetik ulang password.*  
+> *Kami menggunakan kolom bertipe data **JSON**. Dengan tipe data JSON ini, kita tidak perlu membuat tabel terpisah untuk setiap profesi, melainkan parameter brief dan output anggota disimpan dinamis di database MySQL.*  
 > 
-> *Kedua, di baris 25 ke bawah, seluruh rute fungsional kami bungkus di dalam grup middleware **`auth`**. Perhatikan di baris 39, kami menerapkan **Nested Route** dan Middleware kustom bernama **`workspace.member`**:*  
+> *Di model **`app/Models/Task.php`**, kami menambahkan property `$casts`:*  
+> ```php
+> protected $casts = [
+>     'input_data' => 'array',
+>     'output_data' => 'array',
+>     'deadline' => 'date',
+> ];
+> ```  
+> *Casting ini secara otomatis mengonversi data JSON menjadi array PHP saat dipanggil, dan meng-encode-nya kembali ke JSON saat disimpan ke database."*
+
+---
+
+### [Koding 5.2] Bedah Fitur Dynamic Schema via PHP 8 Match Expression
+**[Visual Layar]**  
+*Buka `app/Models/Task.php` baris 76 sampai 120. Sorot method `inputSchema()`.*
+
+**[Narasi Raffi]:**  
+> *"Bagaimana form brief bisa otomatis berubah sesuai profesi anggota? Kuncinya ada di method **`Task::inputSchema()`** baris 76:*  
+> ```php
+> public static function inputSchema(string $jobTitle): array
+> {
+>     return match ($jobTitle) {
+>         'content_creator' => [
+>             'content_type' => ['label' => 'Jenis Konten', 'type' => 'select', 'options' => ['Reels / TikTok', 'Carousel Feed', 'Single Post Feed', 'Story']],
+>             'topic' => ['label' => 'Topik / Pilar Konten', 'type' => 'text'],
+>             'tone_of_voice' => ['label' => 'Tone of Voice', 'type' => 'text'],
+>             'reference_url' => ['label' => 'Link Referensi', 'type' => 'url'],
+>         ],
+>         'graphic_designer' => [
+>             'design_type' => ['label' => 'Jenis Desain', 'type' => 'select', 'options' => ['Feed 1:1', 'Story 9:16', 'Banner Ads', 'Packaging Mockup']],
+>             'dimensions' => ['label' => 'Dimensi / Ukuran', 'type' => 'text'],
+>             'brand_guideline_url' => ['label' => 'Link Brand Guideline', 'type' => 'url'],
+>             'color_notes' => ['label' => 'Catatan Warna / Asset', 'type' => 'text'],
+>         ],
+>         'social_media_specialist' => [
+>             'platform' => ['label' => 'Platform', 'type' => 'select', 'options' => ['Instagram', 'TikTok', 'LinkedIn', 'Twitter/X']],
+>             'target_date' => ['label' => 'Target Tanggal Posting', 'type' => 'date'],
+>             'campaign_goal' => ['label' => 'Goal Campaign', 'type' => 'text'],
+>         ],
+>         default => [],
+>     };
+> }
+> ```  
+> *Kami memanfaatkan fitur modern **PHP 8 `match` expression**. Saat dropdown anggota dipilih di tampilan Blade, JavaScript membaca atribut data role, dan sistem backend merender serta memvalidasi struktur field yang tepat untuk profesi tersebut."*
+
+---
+
+### [Koding 5.3] Bedah Keamanan: Nested Routing & Middleware Otorisasi (403)
+**[Visual Layar]**  
+*Buka `routes/web.php` baris 39–47, lalu buka `app/Http/Middleware/CheckWorkspaceMember.php`.*
+
+**[Narasi Raffi]:**  
+> *"Kedua, mari kita bedah sisi keamanan akses di **`routes/web.php`** dan Middleware.*  
+> 
+> *Di file rute, kami menerapkan **Nested Routes** yang diproteksi oleh middleware kustom `workspace.member`:*  
 > ```php
 > Route::middleware('workspace.member')->group(function () {
 >     Route::get('/workspaces/{workspace}', [WorkspaceController::class, 'show'])->name('workspaces.show');
->     Route::post('/workspaces/{workspace}/members', [WorkspaceController::class, 'addMember'])->name('workspaces.members.store');
->     Route::delete('/workspaces/{workspace}/members/{member}', [WorkspaceController::class, 'removeMember'])->name('workspaces.members.destroy');
-> 
->     // Project nested di bawah workspace
 >     Route::get('/workspaces/{workspace}/projects/create', [ProjectController::class, 'create'])->name('projects.create');
->     Route::post('/workspaces/{workspace}/projects', [ProjectController::class, 'store'])->name('projects.store');
 > });
 > ```  
-> *Pola nested routing ini memastikan bahwa entitas proyek selalu terikat secara hierarkis pada workspace induknya, sehingga tidak mungkin ada proyek tanpa kepemilikan workspace."*
-
----
-
-### [Langkah 1.3] Bedah Kodingan: Middleware Proteksi Tenant (`app/Http/Middleware/CheckWorkspaceMember.php`)
-**[Visual Layar]**  
-*Buka file `app/Http/Middleware/CheckWorkspaceMember.php` di VS Code. Sorot baris 16–27.*
-
-**[Dialog Narasi Raffi]:**  
-> *"Sekarang kita buka middleware-nya di **`app/Http/Middleware/CheckWorkspaceMember.php`**.*  
 > 
-> *Di sinilah letak keamanan multi-tenancy kami diimplementasikan:*  
+> *Mari kita buka middleware-nya di **`app/Http/Middleware/CheckWorkspaceMember.php`**:*  
 > ```php
 > public function handle(Request $request, Closure $next): Response
 > {
@@ -106,435 +312,71 @@
 >     return $next($request);
 > }
 > ```  
-> *Middleware ini memanfaatkan fitur **Route Model Binding** dari Laravel untuk menginjeksi instance model `$workspace`. Kemudian, kami memanggil method pembantu `isMember($request->user())`.*  
-> 
-> *Jika seorang user yang sudah login mencoba mengakses URL workspace yang bukan miliknya dengan mengetik URL di browser, server secara otomatis membatalkannya dengan respons HTTP **403 Forbidden**.*  
-> 
-> *Selanjutnya, rekan saya **Rasya Chaniago** akan menjelaskan perancangan skema database migration dan model Eloquent yang menjadi fondasi penyimpanan data kami."*
+> *Middleware ini memanfaatkan **Route Model Binding** untuk mengambil instance workspace, lalu mengecek apakah user yang login terdaftar sebagai anggota. Jika user iseng mencoba mengubah ID di URL browser, server langsung mencegatnya dengan respons HTTP **403 Forbidden**!"*
 
 ---
 
----
-
-# 🎨 BAGIAN 2: RASYA CHANIAGO (25781093)
-### Role: Graphic Designer & Database/UI Architect
-**Fokus Penjelasan:** Skema Migrasi Database (5 Tabel), Model Eloquent & Relasinya, serta Sistem Desain Antarmuka Glassmorphism.  
-**Durasi:** ± 2,5 Menit  
-
----
-
-### [Langkah 2.1] Bedah Kodingan: Migration Skema Database
+### [Koding 5.4] Bedah Logika Controller: Validasi & Approval
 **[Visual Layar]**  
-*Buka folder `database/migrations/` di VS Code. Tunjukkan 5 file migrasi utama, lalu buka file migration `create_tasks_table.php` dan `create_workspace_members_table.php`.*
+*Buka `app/Http/Controllers/TaskController.php` method `updateWork()` (baris 64), lalu buka `app/Http/Controllers/TaskValidationController.php` method `approve()` dan `requestRevision()`.*
 
-**[Dialog Narasi Rasya]:**  
-> *"Halo semuanya! Saya **Rasya Chaniago** (NPM: 25781093), berperan sebagai Graphic Designer di tim agensi ini sekaligus yang merancang struktur database dan desain antarmuka aplikasi.*  
-> 
-> *Fondasi penyimpanan sistem kami terdiri dari 5 tabel terintegrasi yang kami definisikan melalui Laravel Migration:*  
-> 1. *`workspaces` untuk menyimpan nama studio dan foreign key `owner_id` ke tabel `users`.*  
-> 2. *`workspace_members` sebagai tabel perantara many-to-many.*  
-> 3. *`projects` untuk menyimpan kampanye klien, deskripsi brief, tanggal mulai, dan deadline.*  
-> 4. *`tasks` sebagai tabel penugasan kerja.*  
-> 5. *`task_revisions` untuk mencatat log instruksi perbaikan dari Owner.*  
-> 
-> *Mari kita perhatikan file **`create_tasks_table.php`** baris 15 sampai 32:*  
+**[Narasi Raffi]:**  
+> *"Ketiga, kita buka **`TaskController.php`** pada method **`updateWork()`**:*  
 > ```php
-> Schema::create('tasks', function (Blueprint $table) {
->     $table->id();
->     $table->foreignId('project_id')->constrained()->cascadeOnDelete();
->     $table->foreignId('assigned_to')->constrained('users')->cascadeOnDelete();
->     $table->foreignId('created_by')->constrained('users')->cascadeOnDelete();
->     $table->string('job_title');
->     $table->string('title');
->     $table->text('description')->nullable();
->     $table->enum('priority', ['low', 'medium', 'high'])->default('medium');
->     $table->date('deadline')->nullable();
->     $table->enum('status', ['todo', 'in_progress', 'review', 'revisi', 'done'])->default('todo');
->     $table->json('input_data')->nullable();
->     $table->json('output_data')->nullable();
->     $table->unsignedTinyInteger('progress')->default(0);
->     $table->timestamps();
-> });
-> ```  
-> *Poin penting di sini adalah penggunaan kolom berjenis **JSON** pada `input_data` dan `output_data`. Dengan tipe JSON ini, kita tidak perlu membuat tabel terpisah untuk setiap profesi, melainkan data brief dan hasil kerja dapat disimpan secara fleksibel sesuai keahlian masing-masing."*
-
----
-
-### [Langkah 2.2] Bedah Kodingan: Model Eloquent & Relasi Data
-**[Visual Layar]**  
-*Buka `app/Models/Workspace.php` dan `app/Models/Task.php` di VS Code.*
-
-**[Dialog Narasi Rasya]:**  
-> *"Sekarang kita beralih ke layer Model Eloquent di **`app/Models/Workspace.php`**.*  
+> abort_unless($task->assigned_to === auth()->id(), 403, 'Bukan tugas Anda.');
 > 
-> *Di model ini, kami mendefinisikan relasi `owner()` yang merupakan `belongsTo` ke User, serta relasi `members()` dan `projects()` sebagai `hasMany`.*  
-> 
-> *Perhatikan baris 31 sampai 39 pada model Workspace:*  
-> ```php
-> public function isMember(User $user): bool
-> {
->     return $this->members()->where('user_id', $user->id)->exists();
-> }
-> 
-> public function memberOf(User $user): ?WorkspaceMember
-> {
->     return $this->members()->where('user_id', $user->id)->first();
+> if ($task->status === 'todo' && $progress > 0) {
+>     $update['status'] = 'in_progress';
 > }
 > ```  
-> *Dua method pembantu ini sangat esensial karena digunakan oleh seluruh middleware dan controller untuk memverifikasi hak akses pengguna secara efisien.*  
+> *Di sini ada dua logika emas:*  
+> 1. *Proteksi server: hanya penanggung jawab (`assigned_to`) yang boleh mengedit.*  
+> 2. *Otomatisasi status: begitu slider progres digeser > 0%, status otomatis naik dari `todo` menjadi `in_progress`.*  
 > 
-> *Sedangkan di model **`app/Models/Task.php`**, kami menambahkan property `$casts`:*  
-> ```php
-> protected $casts = [
->     'input_data' => 'array',
->     'output_data' => 'array',
->     'deadline' => 'date',
-> ];
-> ```  
-> *Cast ini membuat kolom JSON secara otomatis dikonversi menjadi array PHP native saat diakses, dan kembali menjadi format JSON saat disimpan ke database."*
+> *Lalu di **`TaskValidationController.php`**, Owner memvalidasi pekerjaan:*  
+> - *Method **`approve()`** mengupdate status menjadi `done` dan progress 100.*  
+> - *Method **`requestRevision()`** mengubah status menjadi `revisi` dan mengeksekusi:*  
+>   ```php
+>   $task->revisions()->create([
+>       'created_by' => auth()->id(),
+>       'note' => $data['note'],
+>   ]);
+>   ```  
+>   *Ini otomatis menyimpan instruksi perbaikan ke tabel `task_revisions` yang tadi dibaca oleh Rasya."*
 
 ---
 
-### [Langkah 2.3] Sistem Desain Antarmuka Glassmorphism (`resources/views/layouts/app.blade.php`)
+### [Koding 5.5] Pembuktian Mutlak: Menjalankan Automated Test (29 Tests PASS!)
 **[Visual Layar]**  
-*Buka `resources/views/layouts/app.blade.php`. Tunjukkan bagian tag `<style>` baris 17–70, lalu perlihatkan tampilan dashboard di browser.*
+*Buka file `tests/Feature/ProjectManagementWorkflowTest.php`. Tunjukkan skenario test end-to-end. Kemudian buka terminal terintegrasi VS Code dan ketik `php artisan test`.*
 
-**[Dialog Narasi Rasya]:**  
-> *"Dari sisi User Interface, kami merancang tema **Modern Glassmorphism** dengan palet warna dark teal `#0e3746` pada sidebar vertikal.*  
+**[Narasi Raffi]:**  
+> *"Terakhir, sebagai bukti bahwa seluruh kodingan ini teruji dan bebas bug, kami menyusun file **`tests/Feature/ProjectManagementWorkflowTest.php`** yang menguji seluruh alur kerja dari autentikasi, isolasi hak akses 403, hingga alur validasi tugas.*  
 > 
-> *Di file layout utama **`resources/views/layouts/app.blade.php`**, kami memanfaatkan CSS variabel dan efek visual modern:*  
-> - *Container utama `.app-window-frame` menggunakan `backdrop-filter: blur(30px)` dan border semi-transparan `rgba(255, 255, 255, 0.9)`.*  
-> - *Main canvas `.app-main-canvas` mengusung background putih frosted `rgba(255, 255, 255, 0.88)` dengan sudut melengkung 32 piksel.*  
-> - *Typography didukung oleh font Google **Plus Jakarta Sans** dan icon library **Bootstrap Icons**.*  
-> 
-> *Hasilnya adalah dashboard yang tampak seperti aplikasi desktop premium, modern, dan sangat nyaman dipandang.*  
-> 
-> *Selanjutnya, rekan saya **Melda Munisa** akan menjelaskan logika WorkspaceController dan ProjectController."*
-
----
-
----
-
-# ✍️ BAGIAN 3: MELDA MUNISA (25781091)
-### Role: Content Creator & Business Logic Specialist
-**Fokus Penjelasan:** Logika Controller Workspace (`WorkspaceController`), Manajemen Proyek (`ProjectController`), Guard `authorizeOwner()`, dan Tampilan View Blade.  
-**Durasi:** ± 2,5 Menit  
-
----
-
-### [Langkah 3.1] Bedah Kodingan: Logika WorkspaceController
-**[Visual Layar]**  
-*Buka file `app/Http/Controllers/WorkspaceController.php` di VS Code. Sorot method `store()`, `addMember()`, dan `authorizeOwner()`.*
-
-**[Dialog Narasi Melda]:**  
-> *"Halo semuanya! Saya **Melda Munisa** (NPM: 25781091), bertindak sebagai Content Creator di tim ini.*  
-> 
-> *Saya akan menjelaskan bagaimana logika bisnis workspace dan proyek dikelola pada layer controller.*  
-> 
-> *Mari kita buka file **`app/Http/Controllers/WorkspaceController.php`** pada method **`store()`** baris 24 sampai 45:*  
-> ```php
-> public function store(Request $request)
-> {
->     $data = $request->validate([
->         'name' => 'required|string|max:255',
->         'agency_name' => 'nullable|string|max:255',
->     ]);
-> 
->     $workspace = Workspace::create([
->         'name' => $data['name'],
->         'agency_name' => $data['agency_name'] ?? null,
->         'owner_id' => auth()->id(),
->     ]);
-> 
->     WorkspaceMember::create([
->         'workspace_id' => $workspace->id,
->         'user_id' => auth()->id(),
->         'role' => 'owner',
->     ]);
-> 
->     return redirect()->route('workspaces.show', $workspace);
-> }
-> ```  
-> *Perhatikan bahwa saat workspace baru dibuat, sistem secara otomatis memasukkan user pembuatnya ke tabel `workspace_members` dengan `role = 'owner'`. Ini menjamin tidak akan pernah ada workspace tanpa pemilik.*  
-> 
-> *Selanjutnya pada method **`addMember()`** baris 54, kami menerapkan validasi ketat:*  
-> 1. *Email harus terdaftar di sistem (`exists:users,email`).*  
-> 2. *Job title harus merupakan salah satu dari: `content_creator`, `graphic_designer`, atau `social_media_specialist`.*  
-> 3. *Terdapat pengecekan `$workspace->isMember($user)` untuk mencegah anggota ganda.*  
-> 
-> *Dan untuk perlindungan aksi sensitif, di baris 92 kami membuat method privat **`authorizeOwner()`**:*  
-> ```php
-> private function authorizeOwner(Workspace $workspace): void
-> {
->     $member = $workspace->memberOf(auth()->user());
->     abort_unless($member && $member->isOwner(), 403, 'Aksi ini hanya untuk Owner.');
-> }
-> ```  
-> *Method ini memastikan hanya Owner yang dapat menambah atau menghapus anggota."*
-
----
-
-### [Langkah 3.2] Bedah Kodingan: Logika ProjectController & Kanban Grouping
-**[Visual Layar]**  
-*Buka file `app/Http/Controllers/ProjectController.php` di VS Code. Sorot method `store()` dan `show()`.*
-
-**[Dialog Narasi Melda]:**  
-> *"Sekarang kita buka file **`app/Http/Controllers/ProjectController.php`**.*  
-> 
-> *Pada method **`store()`** di baris 18, perhatikan validasi tanggal yang kami gunakan:*  
-> ```php
-> $data = $request->validate([
->     'name' => 'required|string|max:255',
->     'client_name' => 'required|string|max:255',
->     'brief' => 'nullable|string',
->     'start_date' => 'nullable|date',
->     'deadline' => 'nullable|date|after_or_equal:start_date',
-> ]);
-> ```  
-> *Aturan `after_or_equal:start_date` memastikan secara otomatis bahwa deadline proyek tidak boleh mendahului tanggal mulai proyek.*  
-> 
-> *Lalu pada method **`show()`** di baris 36:*  
-> ```php
-> public function show(Project $project)
-> {
->     $project->load(['tasks.assignee', 'workspace']);
->     $tasksByStatus = $project->tasks->groupBy('status');
-> 
->     return view('projects.show', compact('project', 'tasksByStatus'));
-> }
-> ```  
-> *Di sini kami menggunakan Eloquent Collection `groupBy('status')` yang langsung memecah daftar tugas ke dalam 5 kelompok status: `todo`, `in_progress`, `review`, `revisi`, dan `done`.*  
-> 
-> *Di file view **`resources/views/projects/show.blade.php`**, variabel `$tasksByStatus` ini di-looping untuk merender kolom Kanban board secara visual dengan kartu-kartu ber-progress bar.*  
-> 
-> *Selanjutnya, rekan saya **Popita Sari** akan menjelaskan bagaimana tugas dibuat secara dinamis dan diproses di TaskController."*
-
----
-
----
-
-# 📊 BAGIAN 4: POPITA SARI (25781096)
-### Role: Social Media Specialist & Data Flow Specialist
-**Fokus Penjelasan:** Dynamic JSON Schema (`inputSchema` & `outputSchema`), Logika Pengerjaan Tugas (`TaskController`), dan Agregasi Dashboard (`DashboardController`).  
-**Durasi:** ± 2,5 Menit  
-
----
-
-### [Langkah 4.1] Bedah Kodingan: Dynamic Schema via Match Expression (`app/Models/Task.php`)
-**[Visual Layar]**  
-*Buka file `app/Models/Task.php` di VS Code. Sorot method `inputSchema()` baris 76–98 dan `outputSchema()` baris 101–120.*
-
-**[Dialog Narasi Popita]:**  
-> *"Halo semuanya! Saya **Popita Sari** (NPM: 25781096), bertindak sebagai Social Media Specialist di tim agensi ini.*  
-> 
-> *Saya akan membedah salah satu fitur kodingan paling unik di sistem kami: **Dynamic Task Schema**.*  
-> 
-> *Mari kita buka file **`app/Models/Task.php`** pada method **`inputSchema()`** di baris 76:*  
-> ```php
-> public static function inputSchema(string $jobTitle): array
-> {
->     return match ($jobTitle) {
->         'content_creator' => [
->             'content_type' => ['label' => 'Jenis Konten', 'type' => 'select', 'options' => ['Reels / TikTok', 'Carousel Feed', 'Single Post Feed', 'Story']],
->             'topic' => ['label' => 'Topik / Pilar Konten', 'type' => 'text'],
->             'tone_of_voice' => ['label' => 'Tone of Voice', 'type' => 'text'],
->             'reference_url' => ['label' => 'Link Referensi', 'type' => 'url'],
->         ],
->         'graphic_designer' => [
->             'design_type' => ['label' => 'Jenis Desain', 'type' => 'select', 'options' => ['Feed 1:1', 'Story 9:16', 'Banner Banner Ads', 'Packaging Mockup']],
->             'dimensions' => ['label' => 'Dimensi / Ukuran', 'type' => 'text'],
->             'brand_guideline_url' => ['label' => 'Link Brand Guideline', 'type' => 'url'],
->             'color_notes' => ['label' => 'Catatan Warna / Asset', 'type' => 'text'],
->         ],
->         'social_media_specialist' => [
->             'platform' => ['label' => 'Platform', 'type' => 'select', 'options' => ['Instagram', 'TikTok', 'LinkedIn', 'Twitter/X']],
->             'target_date' => ['label' => 'Target Tanggal Posting', 'type' => 'date'],
->             'campaign_goal' => ['label' => 'Goal Campaign', 'type' => 'text'],
->         ],
->         default => [],
->     };
-> }
-> ```  
-> *Kami memanfaatkan sintaks **PHP 8 `match` expression**.*  
-> *Ketika Owner memilih anggota di halaman form penugasan, JavaScript di frontend membaca atribut data role, dan sistem backend memvalidasi serta merender field yang sesuai dengan keahlian anggota tersebut.*  
-> 
-> *Hal yang sama berlaku untuk method **`outputSchema()`**, di mana Content Creator mengumpulkan teks caption, Graphic Designer mengumpulkan link file desain, dan saya sebagai Sosmed Specialist mengumpulkan link jadwal posting serta catatan performa reach dan engagement."*
-
----
-
-### [Langkah 4.2] Bedah Kodingan: Siklus Pengerjaan Tugas (`TaskController.php`)
-**[Visual Layar]**  
-*Buka file `app/Http/Controllers/TaskController.php` di VS Code. Sorot method `updateWork()` baris 64–92 dan `submitReview()` baris 95–102.*
-
-**[Dialog Narasi Popita]:**  
-> *"Sekarang kita buka file **`app/Http/Controllers/TaskController.php`**.*  
-> 
-> *Perhatikan method **`updateWork()`** pada baris 64 yang digunakan anggota saat mengerjakan tugas:*  
-> ```php
-> public function updateWork(Request $request, Task $task)
-> {
->     abort_unless($task->assigned_to === auth()->id(), 403, 'Bukan tugas Anda.');
-> 
->     $progress = (int) $request->input('progress', 0);
->     $outputData = $request->input('output', []);
-> 
->     $update = [
->         'progress' => $progress,
->         'output_data' => $outputData,
->     ];
-> 
->     if ($task->status === 'todo' && $progress > 0) {
->         $update['status'] = 'in_progress';
->     }
-> 
->     $task->update($update);
-> 
->     return back()->with('success', 'Hasil pekerjaan dan progres berhasil disimpan.');
-> }
-> ```  
-> *Ada dua hal penting di sini:*  
-> 1. *Proteksi server: `abort_unless($task->assigned_to === auth()->id(), 403)`. Pengguna tidak akan pernah bisa mengubah tugas milik anggota lain.*  
-> 2. *Otomatisasi status: Jika status tugas masih `todo` tetapi input slider progres dinaikkan lebih dari 0%, sistem otomatis mengubah statusnya menjadi `in_progress` tanpa butuh tombol manual.*  
-> 
-> *Ketika pekerjaan rampung, anggota memanggil method **`submitReview()`** di baris 95:*  
-> ```php
-> public function submitReview(Task $task)
-> {
->     abort_unless($task->assigned_to === auth()->id(), 403, 'Bukan tugas Anda.');
-> 
->     $task->update([
->         'status' => 'review',
->         'progress' => 100,
->     ]);
-> 
->     return back()->with('success', 'Tugas diajukan untuk direview oleh Owner.');
-> }
-> ```  
-> *Status langsung berubah menjadi `review` dan progres dipaksa menjadi 100% untuk menunggu persetujuan Owner."*
-
----
-
-### [Langkah 4.3] Bedah Kodingan: Agregasi Dashboard & Optimasi Eager Loading (`DashboardController.php`)
-**[Visual Layar]**  
-*Buka file `app/Http/Controllers/DashboardController.php` di VS Code. Sorot baris 11–29.*
-
-**[Dialog Narasi Popita]:**  
-> *"Terakhir, mari kita lihat bagaimana Dashboard merangkum semua data di **`app/Http/Controllers/DashboardController.php`**.*  
-> 
-> *Kami menerapkan teknik **Eager Loading** untuk mencegah terjadinya N+1 Query Problem:*  
-> ```php
-> $memberships = $user->workspaceMembers()
->     ->with(['workspace.projects.tasks.assignedUser'])
->     ->get();
-> ```  
-> *Dan untuk panel antrean validasi khusus Owner di dashboard, kami menuliskan query:*  
-> ```php
-> $pendingReviews = Task::whereHas('project', function ($q) use ($ownedWorkspaceIds) {
->         $q->whereIn('workspace_id', $ownedWorkspaceIds);
->     })
->     ->where('status', 'review')
->     ->with(['project', 'assignee'])
->     ->get();
-> ```  
-> *Query ini secara efisien memfilter seluruh tugas berstatus review yang hanya berada di workspace milik Owner.*  
-> 
-> *Selanjutnya, Project Manager kami, **Raffi Casidy**, akan menutup presentasi dengan menjelaskan controller validasi dan pembuktian automated testing!"*
-
----
-
----
-
-# 👔 BAGIAN 5: RAFFI CASIDY (25781097) — PENUTUP
-### Role: Project Manager & Backend Architect
-**Fokus Penjelasan:** Logika Validasi & Approval (`TaskValidationController`), Eksekusi Pengujian Otomatis (`php artisan test`), dan Kesimpulan Akhir.  
-**Durasi:** ± 2,5 Menit  
-
----
-
-### [Langkah 5.1] Bedah Kodingan: Logika Validasi & Riwayat Revisi (`TaskValidationController.php`)
-**[Visual Layar]**  
-*Buka file `app/Http/Controllers/TaskValidationController.php` di VS Code. Sorot baris 10–35.*
-
-**[Dialog Narasi Raffi]:**  
-> *"Kembali lagi bersama saya, Raffi Casidy.*  
-> 
-> *Sekarang kita masuk ke tahap akhir siklus kerja agensi, yaitu alur verifikasi pekerjaan di **`app/Http/Controllers/TaskValidationController.php`**.*  
-> 
-> *Di controller ini terdapat dua fungsi utama:*  
-> 1. *Method **`approve()`** pada baris 10:*  
-> ```php
-> public function approve(Task $task)
-> {
->     $this->authorizeOwner($task);
->     $task->update(['status' => 'done', 'progress' => 100]);
->     return back()->with('success', 'Tugas disetujui dan dinyatakan selesai.');
-> }
-> ```  
-> *Jika pekerjaan anggota sudah memenuhi standar agensi, Owner mengklik Approve, dan status tugas di-update menjadi `done`.*  
-> 
-> 2. *Method **`requestRevision()`** pada baris 19:*  
-> ```php
-> public function requestRevision(Request $request, Task $task)
-> {
->     $this->authorizeOwner($task);
-> 
->     $data = $request->validate([
->         'note' => 'required|string',
->     ]);
-> 
->     $task->update(['status' => 'revisi']);
-> 
->     $task->revisions()->create([
->         'created_by' => auth()->id(),
->         'note' => $data['note'],
->     ]);
-> 
->     return back()->with('success', 'Tugas dikembalikan untuk revisi.');
-> }
-> ```  
-> *Jika ada kekurangan, Owner wajib menyertakan catatan perbaikan. Sistem mengubah status tugas menjadi `revisi`, dan secara otomatis menyimpan catatan tersebut ke tabel `task_revisions` lewat relasi Eloquent.*  
-> *Anggota dapat membaca instruksi revisi ini secara transparan di antarmuka tugas dan memperbaikinya kembali."*
-
----
-
-### [Langkah 5.2] Pembuktian Kodingan: Feature Test Otomatis (`ProjectManagementWorkflowTest.php`)
-**[Visual Layar]**  
-*Buka file `tests/Feature/ProjectManagementWorkflowTest.php` di VS Code, tunjukkan skenario test baris 81–163. Kemudian buka terminal dan jalankan perintah `php artisan test` hingga muncul hasil 29 tests passed berwarna hijau.*
-
-**[Dialog Narasi Raffi]:**  
-> *"Untuk membuktikan bahwa seluruh logika kodingan yang kami rancang bukan sekadar teori, kami telah menyusun skenario pengujian komprehensif di **`tests/Feature/ProjectManagementWorkflowTest.php`**.*  
-> 
-> *Di file test ini, kami menguji 4 skenario vital:*  
-> 1. *Rendering dashboard multi-role,*  
-> 2. *Pencegahan hak akses: Member tidak dapat membuat proyek (menghasilkan respons 403),*  
-> 3. *Owner membuat tugas dan mendelegasikannya ke anggota,*  
-> 4. *Serta alur penuh siklus tugas: dari `todo` ➔ `in_progress` ➔ `review` ➔ `revisi` ➔ `review` kembali ➔ hingga `done`.*  
-> 
-> *Sekarang mari kita jalankan perintah pengujian di terminal:*  
-> *(Ketik dan enter di terminal)*  
+> *Mari kita jalankan pengujian otomatis di terminal:*  
+> *(Ketik di terminal dan tekan Enter)*  
 > ```bash
 > php artisan test
 > ```  
-> *(Tunjukkan layar terminal)*  
-> *Dapat kita lihat bersama: seluruh **29 tests dengan 76 assertions berjalan 100% sukses tanpa ada satu pun error atau failure**.*  
-> *Hal ini membuktikan keandalan sistem kami dari layer database, model, middleware, controller, hingga antarmuka Blade."*
+> *(Tunjukkan hasil terminal)*  
+> *Bisa kita lihat bersama di layar terminal: **seluruh 29 unit & feature tests dengan 76 assertions berjalan 100% SUKSES tanpa ada satu pun error atau failure!**"*
 
 ---
 
-### [Langkah 5.3] Penutup & Kesimpulan
+### [Penutup 5.6] Kesimpulan
 **[Visual Layar]**  
-*Kembali ke tampilan utama dashboard browser atau slide presentasi kelompok.*
+*Kembali ke tampilan browser dashboard atau slide nama kelompok.*
 
-**[Dialog Narasi Raffi]:**  
-> *"Sebagai kesimpulan, **Project Management SaaS Platform** ini telah memenuhi seluruh kriteria fungsional dan teknis yang ditugaskan pada mata kuliah Pemrograman Web III.*  
+**[Narasi Raffi]:**  
+> *"Demikian presentasi lengkap dari kelompok kami: mulai dari demonstrasi fitur tiap role oleh Melda, Popita, dan Rasya, hingga bedah kodingan dan pengujian otomatis backend yang saya paparkan.*  
 > 
-> *Melalui penerapan arsitektur MVC Laravel yang bersih, validasi ketat di sisi server, form dinamis adaptif berbasis JSON, serta estetika UI Glassmorphism, aplikasi ini siap menjadi solusi nyata bagi operasional agensi kreatif.*  
+> *Aplikasi ini membuktikan bagaimana arsitektur MVC Laravel yang terstruktur mampu menghasilkan platform SaaS manajemen proyek yang aman, responsif, dan siap pakai.*  
 > 
-> *Sekian presentasi dan bedah kodingan dari kelompok kami: saya Raffi Casidy, bersama Rasya Chaniago, Melda Munisa, dan Popita Sari. Mohon maaf apabila ada kekurangan. Terima kasih banyak atas perhatian Bapak/Ibu dosen pengampu. Wassalamualaikum warahmatullahi wabarakatuh."*
+> *Terima kasih banyak atas perhatian Bapak/Ibu dosen pengampu. Wassalamualaikum warahmatullahi wabarakatuh."*
 
 ---
 
-## 💡 TIPS REKAMAN & SCREEN RECORDING:
-1. **Layout Layar:** Bagi layar menjadi 2 jendela jika memungkinkan (kiri VS Code untuk menyorot baris kode, kanan browser untuk memperlihatkan efek visualnya secara nyata).
-2. **Kualitas Font di VS Code:** Perbesar font VS Code *(Ctrl + +)* sebanyak 2x agar baris kodingan terbaca sangat jelas dan tajam di rekaman video.
-3. **Eksekusi Test:** Pastikan menjalankan `php artisan test` di akhir segmen Raffi sebagai penutup yang memukau dosen penguji!
+## 🎯 KEUNGGULAN SCRIPT INI UNTUK PRESENTASI ANDA:
+1. **Raffi Dapat Poin Plus Maksimal:** Membedah tuntas 5 file kodingan utama + menjalankan unit test secara live.
+2. **Anggota Lain Santai & Natural:** Rasya, Melda, dan Popita tidak pusing menghafal baris kodingan, mereka hanya mendemokan fitur di browser sesuai jobdesc-nya.
+3. **Alur Mengalir:** Saling oper peran dari Raffi ➔ Melda ➔ Popita ➔ Rasya ➔ kembali ke Raffi untuk kodingan & penutup.
